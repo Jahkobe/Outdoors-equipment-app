@@ -3,7 +3,7 @@ class SurvesController < ApplicationController
 
   # GET /surves
   def index
-    @surves = Surf.all
+    @surves = Surf.all.reverse
 
     render json: @surves
   end
