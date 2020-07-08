@@ -60,7 +60,7 @@ class App extends Component{
 
   render(){
   return (
-          <div className="App">
+        <div className="App">
           <div className="container">
             <main>
               <h1>Outdoors Equipment App</h1>
