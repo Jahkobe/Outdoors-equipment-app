@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Outdoors extends Component {
+class Surves extends Component {
 
     render () {
       return (
@@ -8,6 +8,7 @@ class Outdoors extends Component {
         {this.props.surves.map( surf => {
             return  (
                 <div key={surf.id} className="surf">
+                    {/* <div>{surf.user.username}</div> */}
                     <h3>{ surf.item }</h3>
                     <p>{ surf.description }</p>
                     <small>{surf.price }</small>
@@ -19,4 +20,4 @@ class Outdoors extends Component {
     }
   }
 
-export default Outdoors;
+export default Surves;

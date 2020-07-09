@@ -5,7 +5,7 @@ class SurvesController < ApplicationController
   def index
     @surves = Surf.all.reverse
 
-    render json: @surves
+    render json: @surves.to_json(include: :users)
   end
 
   # GET /surves/1
@@ -16,7 +16,7 @@ class SurvesController < ApplicationController
   # POST /surves
   def create
     @surf = Surf.new(surf_params)
-
+    @surf.user = User.first
     if @surf.save
       render json: @surf, status: :created, location: @surf
     else

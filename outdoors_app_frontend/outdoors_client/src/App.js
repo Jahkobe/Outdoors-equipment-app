@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Outdoors from './components/Outdoors.js'
+import Surves from './components/Surves.js'
+import Signin from './components/Signin.js'
 import './App.css';
 
 class App extends Component{
@@ -39,11 +40,11 @@ class App extends Component{
      'Content-Type': 'application/json'
    }
  })
-   .then(createdNotice => {
-     return createdNotice.json()
+   .then(createdSurf => {
+     return createdSurf.json()
    })
 
-   .then(jsonedNotice => {
+   .then(jsonedSurf => {
      // reset the form
      // add notice to notices
      this.setState({
@@ -52,7 +53,7 @@ class App extends Component{
          description: '',
          price: ''
        },
-       surves: [jsonedNotice, ...this.state.surves]
+       surves: [jsonedSurf, ...this.state.surves]
      })
    })
    .catch(error => console.log(error))
@@ -87,7 +88,8 @@ class App extends Component{
                 />
                 <input type="submit" className="submit" />
               </form>
-              <Outdoors surves={this.state.surves}/>
+              <Surves surves={this.state.surves}/>
+              <Signin />
           </div>
         </div>
       );
