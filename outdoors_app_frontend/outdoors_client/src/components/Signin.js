@@ -5,6 +5,7 @@ class Signin extends Component {
         state = {
         users : [],
         formInputs: {
+            username: '',
             email: ''
         }
     }
@@ -22,6 +23,7 @@ class Signin extends Component {
       
       handleChange = (event) => {
         const updateInput = Object.assign( this.state.formInputs, { [event.target.id]: event.target.value })
+        console.log(updateInput)
         this.setState(updateInput)
       }
     
@@ -36,7 +38,7 @@ class Signin extends Component {
        }
      })
        .then(createdUser => {
-         return createdUser.json()
+         createdUser.json()
        })
     
        .then(jsonedUser => {
@@ -44,6 +46,7 @@ class Signin extends Component {
          // add notice to notices
          this.setState({
            formInputs: {
+             username: '',
              email: ''
            },
            users: [jsonedUser, ...this.state.users]
@@ -56,6 +59,12 @@ class Signin extends Component {
       return (
         <div>
             <form onSubmit={this.handleSubmit}>
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  id="username" value={this.state.formInputs.username}
+                  onChange={this.handleChange}
+                />
                 <label htmlFor="email">Email</label>
                 <input
                   type="text"
