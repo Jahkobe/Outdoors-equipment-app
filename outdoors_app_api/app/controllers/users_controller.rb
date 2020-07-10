@@ -5,12 +5,16 @@ class UsersController < ApplicationController
     def index
       @users = User.all.reverse
   
-      render json: @users
+      render json: @users.to_json(include: [:surves])
     end
   
     # GET /surves/1
     def show
-      render json: @user
+      @user = User.find(params[:id])
+    end
+
+    def edit
+      @user = User.find(params[:id])
     end
   
     # POST /surves
@@ -46,6 +50,6 @@ class UsersController < ApplicationController
   
       # Only allow a trusted parameter "white list" through.
       def user_params
-        params.require(:user).permit(:username, :email)
+        params.require(:user).permit(:username, :email, :password_digest)
       end
   end

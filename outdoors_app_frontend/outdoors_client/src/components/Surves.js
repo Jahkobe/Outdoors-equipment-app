@@ -28,7 +28,7 @@ class Surves extends Component {
         {this.state.surves.map( surf => {
             return  (
                 <div key={surf.id} className="surf">
-                    {/* <div>{surf.user.username}</div> */}
+                    <div>{surf.user.username}</div>
                     <h3>{ surf.item }</h3>
                     <img src={surf.picture}></img>
                     <p>{ surf.description }</p>

@@ -6,7 +6,8 @@ class Signin extends Component {
         users : [],
         formInputs: {
             username: '',
-            email: ''
+            email: '',
+            password_digest: ''
         }
     }
     
@@ -47,7 +48,8 @@ class Signin extends Component {
          this.setState({
            formInputs: {
              username: '',
-             email: ''
+             email: '',
+             password_digest: ''
            },
            users: [jsonedUser, ...this.state.users]
          })
@@ -69,6 +71,12 @@ class Signin extends Component {
                 <input
                   type="text"
                   id="email" value={this.state.formInputs.email}
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="password_digest">Password</label>
+                <input
+                  type="text"
+                  id="password_digest" value={this.state.formInputs.password_digest}
                   onChange={this.handleChange}
                 />
                 <input type="submit" className="submit" />

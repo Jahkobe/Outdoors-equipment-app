@@ -5,7 +5,8 @@ class SurvesController < ApplicationController
   def index
     @surves = Surf.all.reverse
 
-    render json: @surves.to_json(include: :users)
+    render json: @surves.to_json(include: :user)
+
   end
 
   # GET /surves/1
