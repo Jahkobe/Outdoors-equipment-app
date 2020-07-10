@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import Surves from './components/Surves.js'
-import Signin from './components/Signin.js'
+import Surves from './components/Surves.js';
+import Signin from './components/Signin.js';
+import Snows from './components/Snows.js';
+import Climbs from './components/Climbs.js';
+import Sellsomething from './components/Sellsomething.js';
+import {BrowserRouter} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import './App.css';
 
 class App extends Component{
 
   state = {
-    surves : [],
     formInputs: {
       item: '',
       description: '',
@@ -14,84 +18,39 @@ class App extends Component{
     }
   }
 
-  componentDidMount(){
-    this.getSurves()
-  }
-
-  getSurves = () => {
-      fetch('http://localhost:3000/surves')
-      .then(response => response.json())
-      .then(json => this.setState({surves: json}))
-      .catch(error => console.error(error))
-  }
-  
-  handleChange = (event) => {
-    const updateInput = Object.assign( this.state.formInputs, { [event.target.id]: event.target.value })
-    this.setState(updateInput)
-  }
-
-  handleSubmit = (event) =>{
-    event.preventDefault()
-    fetch('http://localhost:3000/surves', {
-      body: JSON.stringify(this.state.formInputs),
-      method: 'POST',
-   headers: {
-     'Accept': 'application/json, text/plain, */*',
-     'Content-Type': 'application/json'
-   }
- })
-   .then(createdSurf => {
-     return createdSurf.json()
-   })
-
-   .then(jsonedSurf => {
-     // reset the form
-     // add notice to notices
-     this.setState({
-       formInputs: {
-         item: '',
-         description: '',
-         price: ''
-       },
-       surves: [jsonedSurf, ...this.state.surves]
-     })
-   })
-   .catch(error => console.log(error))
-  }
-
   render(){
   return (
+    <BrowserRouter>
         <div className="App">
           <div className="container">
+            <header>
+              <nav>
+                <ul className="topNav">
+                  <div className="homeLink">
+                    <li><a href="/">Home</a></li>
+                  </div>
+                  <li><a href="/users">Login</a></li>
+                </ul>
+              </nav>
+              <nav>
+                <ul className="bottomNav">
+                  <li><a href="/surves">Surf</a></li>
+                  <li><a href="/snows">Snow</a></li>
+                  <li><a href="/climbs">Climb</a></li>
+                </ul>
+              </nav>
+            </header>
             <main>
               <h1>Outdoors Equipment App</h1>
             </main>
-              <h4>Sell something </h4>
-              <form onSubmit={this.handleSubmit}>
-                <label htmlFor="item">Item</label>
-                <input
-                  type="text"
-                  id="item" value={this.state.formInputs.item}
-                  onChange={this.handleChange}
-                />
-                <label htmlFor="description">Description</label>
-                <input
-                  type="text"
-                  id="description" value={this.state.formInputs.description}
-                  onChange={this.handleChange}
-                />
-                <label htmlFor="price">Price</label>
-                <input
-                  type="integer"
-                  id="price" value={this.state.formInputs.price}
-                  onChange={this.handleChange}
-                />
-                <input type="submit" className="submit" />
-              </form>
-              <Surves surves={this.state.surves}/>
-              <Signin />
+              <Route path="/climbs" exact component={Climbs}/>
+              <Route path="/snows" exact component={Snows}/>
+              <Route path="/" exact component={Sellsomething}/>
+              <Route path="/surves" exact component={Surves}/>
+              <Route path="/users" exact component={Signin}/>
           </div>
         </div>
+        </BrowserRouter>
       );
     }
 }

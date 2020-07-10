@@ -2,9 +2,29 @@
   text-align: center;
 }
 
+.container{
+  width: 80%;
+  margin: 0 auto;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.topNav{
+  display: flex;
+  justify-content: space-between;
+  padding-inline-start: 0;
+}
+.bottomNav{
+  display: flex;
+  justify-content: space-around;
+  padding-inline-start: 0;
+}
+
+li{
+  list-style: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
