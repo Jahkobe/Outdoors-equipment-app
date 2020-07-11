@@ -3,8 +3,9 @@ import Surves from './components/Surves.js';
 import Signin from './components/Signin.js';
 import Snows from './components/Snows.js';
 import Climbs from './components/Climbs.js';
+import Home from './components/Home.js';
 import {BrowserRouter} from 'react-router-dom';
-import {Route} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 import './App.css';
 
 class App extends Component{
@@ -33,15 +34,16 @@ class App extends Component{
               </nav>
               <nav>
                 <ul className="bottomNav">
-                  <li><a href="/surves">Surf</a></li>
-                  <li><a href="/snows">Snow</a></li>
-                  <li><a href="/climbs">Climb</a></li>
+                  <li><Link to="/surves">Surf</Link></li>
+                  <li><Link to="/snows">Snow</Link></li>
+                  <li><Link to="/climbs">Climb</Link></li>
                 </ul>
               </nav>
             </header>
             <main>
               <h1>Outdoors Equipment App</h1>
             </main>
+              <Route path="/" exact component={Home}/>
               <Route path="/climbs" exact component={Climbs}/>
               <Route path="/snows" exact component={Snows}/>
               <Route path="/surves" exact component={Surves}/>

@@ -216,8 +216,8 @@ class Surves extends Component {
         {this.state.surves.map( surf => {
             return  (
                 <div key={surf.id} className="surf">
-                    <a onClick={this.onClick(surf.id)}><div>
-                      seller: {surf.user.username}</div>
+                    <a onClick={this.onClick(surf.id)}>
+                    {/* <div>seller: {surf.user.username}</div> */}
                     <h3>{ surf.item }</h3>
                     <img src={surf.picture}></img>
                     <p>{ surf.description }</p>

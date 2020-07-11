@@ -3,7 +3,7 @@ class ClimbsController < ApplicationController
 
   # GET /climbs
   def index
-    @climbs = Climb.all
+    @climbs = Climb.all.reverse
 
     render json: @climbs.to_json(include: :user)
   end
@@ -16,7 +16,7 @@ class ClimbsController < ApplicationController
   # POST /climbs
   def create
     @climb = Climb.new(climb_params)
-
+    @climb.user = User.first
     if @climb.save
       render json: @climb, status: :created, location: @climb
     else

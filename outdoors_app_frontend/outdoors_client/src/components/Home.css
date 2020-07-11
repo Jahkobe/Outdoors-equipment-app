@@ -1,0 +1,22 @@
+.homeimgdivs{
+    width: 900px;
+    max-height: 300px;
+    margin: 50px auto;
+    background-size: cover;
+}
+
+.homeimages{
+  
+    width:80%;
+    height: 20em;
+    margin: 0 auto;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);
+
+
+}
+
+.imgflex{
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+}
