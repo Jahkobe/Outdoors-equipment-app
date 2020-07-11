@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     def index
       @users = User.all.reverse
   
-      render json: @users.to_json(include: [:surves])
+      render json: @users.to_json(include: [:surves, :snows, :climbs])
     end
   
     # GET /surves/1

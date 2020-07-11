@@ -3,7 +3,6 @@ import Surves from './components/Surves.js';
 import Signin from './components/Signin.js';
 import Snows from './components/Snows.js';
 import Climbs from './components/Climbs.js';
-import Sellsomething from './components/Sellsomething.js';
 import {BrowserRouter} from 'react-router-dom';
 import {Route} from 'react-router-dom';
 import './App.css';
@@ -45,7 +44,6 @@ class App extends Component{
             </main>
               <Route path="/climbs" exact component={Climbs}/>
               <Route path="/snows" exact component={Snows}/>
-              <Route path="/" exact component={Sellsomething}/>
               <Route path="/surves" exact component={Surves}/>
               <Route path="/users" exact component={Signin}/>
           </div>

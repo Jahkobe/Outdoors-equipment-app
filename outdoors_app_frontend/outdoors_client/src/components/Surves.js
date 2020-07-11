@@ -1,8 +1,32 @@
 import React, { Component } from 'react';
+import Sellsurves from './Sellsurves.js';
 import './Modal.css';
 
 
-class Show extends Component{
+class Showsurves extends Component{
+
+  state = {
+    editing: false,
+    deleted: false
+  }
+
+  editPost = () => {
+    this.setState({
+      editPost: true
+    })
+  }
+
+  deletePost = (event) => {
+      event.preventDefault()
+      fetch('http://localhost:3000/surves/' + this.props.props.id, {
+        body: JSON.stringify(this.state.formInputs),
+        method: 'DELETE',
+     headers: {
+       'Accept': 'application/json, text/plain, */*',
+       'Content-Type': 'application/json'
+     }
+   })
+  }
 
   render(){
     return(
@@ -12,12 +36,104 @@ class Show extends Component{
             <img src={this.props.props.picture}></img><br></br>
             {this.props.props.description}<br></br>
             {this.props.props.price}<br></br>
-            <a onClick={this.props.stopShow} id="close" href="#">Close</a>
+            <a onClick={this.props.stopShow} id="close" href="#">Close</a><br></br>
+            <button onClick={this.editPost}>Edit</button>
+            <button onClick={this.deletePost}>Delete</button>
+            {this.state.editPost &&
+              <Editsurves props={this.props.props} editPost={this.editPost}/>
+            }
             </div>
       </div>
     );
   }
 }
+
+class Editsurves extends Component{
+  state = {
+    surves : [],
+    formInputs: {
+      item: '',
+      description: '',
+      price: ''
+    }
+  }
+
+  componentDidMount(){
+    this.getSurves()
+  }
+
+  getSurves = () => {
+      fetch('http://localhost:3000/surves')
+      .then(response => response.json())
+      .then(json => this.setState({surves: json}))
+      .catch(error => console.error(error))
+  }
+  
+  handleChange = (event) => {
+    const updateInput = Object.assign( this.state.formInputs, { [event.target.id]: event.target.value })
+    this.setState(updateInput)
+  }
+
+  handleSubmit = (event) =>{
+    event.preventDefault()
+    fetch('http://localhost:3000/surves', {
+      body: JSON.stringify(this.state.formInputs),
+      method: 'POST',
+   headers: {
+     'Accept': 'application/json, text/plain, */*',
+     'Content-Type': 'application/json'
+   }
+ })
+   .then(createdSurf => {
+     return createdSurf.json()
+   })
+
+   .then(jsonedSurf => {
+     // reset the form
+     // add notice to notices
+     this.setState({
+       formInputs: {
+         item: '',
+         description: '',
+         price: ''
+       },
+       surves: [jsonedSurf, ...this.state.surves]
+     })
+   })
+   .catch(error => console.log(error))
+  }
+
+render () {
+  return (
+    <div>
+        <h4>Edit </h4>
+          <form onSubmit={this.handleSubmit}>
+            <label htmlFor="item">Item</label>
+            <input
+              type="text"
+              id="item" value={this.state.formInputs.item}
+              onChange={this.handleChange} placeholder={this.props.props.item}
+            />
+            <label htmlFor="description">Description</label>
+            <input
+              type="text"
+              id="description" value={this.state.formInputs.description}
+              onChange={this.handleChange} placeholder={this.props.props.description}
+            />
+            <label htmlFor="price">Price</label>
+            <input
+              type="integer"
+              id="price" value={this.state.formInputs.price}
+              onChange={this.handleChange} placeholder={this.props.props.price}
+            />
+            <input type="submit" className="submit" />
+          </form>
+    </div>
+  )
+}
+}
+
+
 
 class Surves extends Component {
 
@@ -91,19 +207,21 @@ class Surves extends Component {
     render () {
       return (
         <div>
+          <Sellsurves />
           {this.state.showing &&
           <div>
-          <Show props={this.state.surfid} stopShow={this.stopShow}/>
+          <Showsurves  props={this.state.surfid} stopShow={this.stopShow}/>
           </div>
           }
         {this.state.surves.map( surf => {
             return  (
                 <div key={surf.id} className="surf">
-                    <div>{surf.user.username}</div>
+                    <a onClick={this.onClick(surf.id)}><div>
+                      seller: {surf.user.username}</div>
                     <h3>{ surf.item }</h3>
-                    <a onClick={this.onClick(surf.id)}><img src={surf.picture}></img></a>
+                    <img src={surf.picture}></img>
                     <p>{ surf.description }</p>
-                    <small>${surf.price }</small><br></br>
+                    <small>${surf.price }</small><br></br></a>
                 </div>
             )
         })}

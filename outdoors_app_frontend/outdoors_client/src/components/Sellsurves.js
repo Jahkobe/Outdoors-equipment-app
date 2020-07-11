@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
-class Sellsomething extends Component {
+class Sellsurves extends Component {
 
     state = {
         surves : [],
         formInputs: {
           item: '',
+          picture: '',
           description: '',
           price: ''
         }
@@ -47,6 +48,7 @@ class Sellsomething extends Component {
          this.setState({
            formInputs: {
              item: '',
+             picture: '',
              description: '',
              price: ''
            },
@@ -65,6 +67,12 @@ class Sellsomething extends Component {
                 <input
                   type="text"
                   id="item" value={this.state.formInputs.item}
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="picture">Picture url</label>
+                <input
+                  type="text"
+                  id="picture" value={this.state.formInputs.picture}
                   onChange={this.handleChange}
                 />
                 <label htmlFor="description">Description</label>
@@ -86,4 +94,4 @@ class Sellsomething extends Component {
     }
   }
 
-export default Sellsomething;
+export default Sellsurves;

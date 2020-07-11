@@ -3,9 +3,9 @@ class SnowsController < ApplicationController
 
   # GET /snows
   def index
-    @snows = Snow.all
+    @snows = Snow.all.reverse
 
-    render json: @snows
+    render json: @snows.to_json(include: :user)
   end
 
   # GET /snows/1
@@ -13,10 +13,14 @@ class SnowsController < ApplicationController
     render json: @snow
   end
 
+  def edit
+    render json: @snow = Snow.find(params[:id])
+  end
+
   # POST /snows
   def create
     @snow = Snow.new(snow_params)
-
+    @snow.user = User.first
     if @snow.save
       render json: @snow, status: :created, location: @snow
     else

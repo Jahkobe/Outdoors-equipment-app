@@ -5,7 +5,7 @@ class ClimbsController < ApplicationController
   def index
     @climbs = Climb.all
 
-    render json: @climbs
+    render json: @climbs.to_json(include: :user)
   end
 
   # GET /climbs/1
