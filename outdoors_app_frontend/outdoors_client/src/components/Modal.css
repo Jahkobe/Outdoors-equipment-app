@@ -28,6 +28,7 @@ body {
 .snow{
 	max-width: 300px;
 	min-width: 300px;
+	
 }
 
 .snow:hover{
@@ -38,9 +39,10 @@ body {
 }
 
 .snowflex{
-	margin-top: 25px;
+	margin: 50px;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .shows{
