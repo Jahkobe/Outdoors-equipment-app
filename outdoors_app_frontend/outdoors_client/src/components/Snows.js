@@ -32,16 +32,19 @@ class Showsnows extends Component{
     return(
       <div>
           <div id="modal">
-            {this.props.props.item}<br></br>
+            <div className="shows">
+            <a className="showsclose" onClick={this.props.stopShow} id="close" href="#">Close</a><br></br>
+            <h1 className="showstitle">{this.props.props.item}</h1><br></br>
             <img src={this.props.props.picture}></img><br></br>
-            {this.props.props.description}<br></br>
-            {this.props.props.price}<br></br>
-            <a onClick={this.props.stopShow} id="close" href="#">Close</a><br></br>
-            <button onClick={this.editPost}>Edit</button>
-            <button onClick={this.deletePost}>Delete</button>
+            <p className="showsdescription">{this.props.props.description}</p><br></br>
+            <h3 className="showsprice">${this.props.props.price}</h3><br></br>
+           
+            <button className="showsbutton" onClick={this.editPost}>Edit</button><br></br>
+            <button className="showsbutton" onClick={this.deletePost}>Delete</button>
             {this.state.editPost &&
               <Editsnows props={this.props.props} editPost={this.editPost}/>
             }
+            </div>
             </div>
       </div>
     );
@@ -101,13 +104,27 @@ class Editsnows extends Component{
      })
    })
    .catch(error => console.log(error))
+   this.deletePost()
   }
+
+  deletePost = (event) => {
+    console.log(this.props.id)
+    event.preventDefault()
+    fetch('http://localhost:3000/snows/' + this.props.id, {
+      body: JSON.stringify(this.state.formInputs),
+      method: 'DELETE',
+   headers: {
+     'Accept': 'application/json, text/plain, */*',
+     'Content-Type': 'application/json'
+   }
+ })
+}
 
 render () {
   return (
     <div>
         <h4>Edit </h4>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.deletePost} onSubmit={this.handleSubmit}>
             <label htmlFor="item">Item</label>
             <input
               type="text"
@@ -213,6 +230,7 @@ class Snows extends Component {
           <Showsnows  props={this.state.snowid} stopShow={this.stopShow}/>
           </div>
           }
+          <div className="snowflex">
         {this.state.snows.map( snow => {
             return  (
                 <div key={snow.id} className="snow">
@@ -225,6 +243,7 @@ class Snows extends Component {
                 </div>
             )
         })}
+        </div>
     </div>
       )
     }

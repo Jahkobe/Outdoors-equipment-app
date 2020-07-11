@@ -32,13 +32,15 @@ class Showclimbs extends Component{
     return(
       <div>
           <div id="modal">
-            {this.props.props.item}<br></br>
-            <img src={this.props.props.picture}></img><br></br>
-            {this.props.props.description}<br></br>
-            {this.props.props.price}<br></br>
+            <div className="shows">
             <a onClick={this.props.stopShow} id="close" href="#">Close</a><br></br>
-            <button onClick={this.editPost}>Edit</button>
-            <button onClick={this.deletePost}>Delete</button>
+            <h1 className="showstitle">{this.props.props.item}</h1><br></br>
+            <img src={this.props.props.picture}></img><br></br>
+            <p className="showsdescription">{this.props.props.description}</p><br></br>
+            <h3 className="showsprice">${this.props.props.price}</h3><br></br>
+            <button className="showsbutton" onClick={this.editPost}>Edit</button><br></br>
+            <button className="showsbutton" onClick={this.deletePost}>Delete</button>
+            </div>
             {this.state.editPost &&
               <Editclimbs props={this.props.props} editPost={this.editPost}/>
             }
@@ -213,6 +215,7 @@ class Climbs extends Component {
           <Showclimbs  props={this.state.climbid} stopShow={this.stopShow}/>
           </div>
           }
+        <div className="climbflex">
         {this.state.climbs.map( climb => {
             return  (
                 <div key={climb.id} className="climb">
@@ -225,6 +228,7 @@ class Climbs extends Component {
                 </div>
             )
         })}
+        </div>
     </div>
       )
     }

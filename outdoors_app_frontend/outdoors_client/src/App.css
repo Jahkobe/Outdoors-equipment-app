@@ -7,6 +7,10 @@
   margin: 0 auto;
 }
 
+.sitetitle{
+  font-family: 'Corben', cursive;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -18,6 +22,7 @@
   padding-inline-start: 0;
 }
 .bottomNav{
+  margin-top: 40px;
   display: flex;
   justify-content: space-around;
   padding-inline-start: 0;
@@ -48,6 +53,17 @@ li{
   color: #61dafb;
 }
 
+
+.img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+.footer{
+  margin-bottom: 500px;
+}
 
 
 @keyframes App-logo-spin {
