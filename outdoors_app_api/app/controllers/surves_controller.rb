@@ -14,6 +14,10 @@ class SurvesController < ApplicationController
     render json: @surf
   end
 
+  def edit
+    render json: @surf = Surf.find(params[:id])
+  end
+
   # POST /surves
   def create
     @surf = Surf.new(surf_params)
