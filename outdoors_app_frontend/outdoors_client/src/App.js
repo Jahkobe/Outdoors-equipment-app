@@ -4,6 +4,7 @@ import Signin from './components/Signin.js';
 import Snows from './components/Snows.js';
 import Climbs from './components/Climbs.js';
 import Home from './components/Home.js';
+import Onestopselling from './components/Onestopselling.js'
 import {BrowserRouter} from 'react-router-dom';
 import {Route, Link} from 'react-router-dom';
 import "slick-carousel/slick/slick.css"; 
@@ -55,11 +56,12 @@ class App extends Component{
           <div className="container">
             <header>
               <nav>
-                <ul className="topNav">
+              <ul className="topNav">
                   <div className="homeLink">
                     <li><a href="/">Home</a></li>
                   </div>
-                  <li><a href="/users">Login</a></li>
+                  <li><Link to="/users">Login</Link></li>
+                  <li><Link to="/sells">Sell</Link></li>
                 </ul>
               </nav>
               <Slider {...settings}>
@@ -87,6 +89,8 @@ class App extends Component{
               <Route path="/snows" exact component={Snows}/>
               <Route path="/surves" exact component={Surves}/>
               <Route path="/users" exact component={Signin}/>
+              <Route path="/sells" exact component={Onestopselling}/>
+
               <footer className="footer">
 
               </footer>

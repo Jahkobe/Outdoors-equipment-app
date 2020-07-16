@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Sellsurves from './Sellsurves.js';
 import './Modal.css';
 
 
@@ -209,7 +208,6 @@ class Surves extends Component {
     render () {
       return (
         <div>
-          <Sellsurves />
           {this.state.showing &&
           <div>
           <Showsurves  props={this.state.surfid} stopShow={this.stopShow}/>

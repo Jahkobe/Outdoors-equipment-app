@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Sellclimbs from './Sellclimbs.js';
 import './Modal.css';
 
 
@@ -209,7 +208,6 @@ class Climbs extends Component {
     render () {
       return (
         <div>
-          <Sellclimbs />
           {this.state.showing &&
           <div>
           <Showclimbs  props={this.state.climbid} stopShow={this.stopShow}/>

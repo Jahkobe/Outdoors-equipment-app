@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Sellsnows from './Sellsnows.js';
 import './Modal.css';
 
 
@@ -224,7 +223,6 @@ class Snows extends Component {
     render () {
       return (
         <div>
-          <Sellsnows />
           {this.state.showing &&
           <div>
           <Showsnows  props={this.state.snowid} stopShow={this.stopShow}/>
