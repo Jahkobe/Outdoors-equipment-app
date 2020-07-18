@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+  resources :notices
   resources :surves, only: [:show, :index, :new, :create, :edit, :update, :destroy]
   resources :climbs, only: [:show, :index, :new, :create, :edit, :update, :destroy]
   resources :snows, only: [:show, :index, :new, :create, :edit, :update, :destroy]
